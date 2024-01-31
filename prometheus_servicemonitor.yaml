@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: jenkins
+  labels:
+    team: frontend
+spec:
+  selector:
+    matchLabels:
+      app: jenkins  # Bu, Jenkins servisinizin kubernetes etiketleriyle eşleşmelidir
+  endpoints:
+  - port: 'jenkins-port'  # Jenkins servisinizin kubernetes servisinde tanımlı port ismi
+    path: /prometheus
+    interval: 30s
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __address__
+        replacement: 34.65.123.73:8080  # Jenkins IP adresi ve portu

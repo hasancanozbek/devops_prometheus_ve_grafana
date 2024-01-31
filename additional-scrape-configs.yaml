@@ -1,0 +1,5 @@
+- job_name: 'jenkins'
+  metrics_path: '/prometheus'
+  scheme: 'http'  # veya 'https', eğer Jenkins HTTPS üzerinden erişiliyorsa
+  static_configs:
+  - targets: ['34.65.123.73:8080']
